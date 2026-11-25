@@ -1,5 +1,8 @@
 FROM ghcr.io/sagernet/sing-box:latest
 
-EXPOSE 8080/tcp
+COPY config.json /etc/sing-box/config.json
+COPY start.sh /start.sh
 
-CMD ["run", "-c", "/etc/sing-box/config.json"]
+EXPOSE 8080
+
+ENTRYPOINT ["/bin/sh", "/start.sh"]
